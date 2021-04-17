@@ -1,6 +1,6 @@
 use crate::problem::Problem;
 
-#[derive(Debug)]
+#[derive(Debug, Clone)]
 pub struct Solution<'a> {
     path: Vec<usize>,
     problem: &'a Problem,

@@ -52,8 +52,8 @@ impl Problem {
         }
     }
 
-    /// Get a specific point shifting by 1
-    /// (since on the problem file are stored starting from 1)
+    /// Get a specific point shifting by 1 since on the problem
+    /// file cities are stored starting from 1
     pub fn get_point(&self, id: usize) -> &Point {
         return &self.points[id - 1];
     }
