@@ -21,7 +21,7 @@ impl Problem {
                 let mut comment: Option<String> = None;
                 let mut dimension: u32 = 0;
                 let mut best_known: u32 = 0;
-                let mut points: Vec<Point> = vec![];
+                let mut points: Vec<Point> = Vec::new();
 
                 for line in lines {
                     let words: Vec<_> = line.splitn(3, " ").collect();
@@ -31,7 +31,6 @@ impl Problem {
                         ["DIMENSION", ":", x] => dimension = x.parse::<u32>().unwrap(),
                         ["BEST_KNOWN", ":", x] => best_known = x.parse::<u32>().unwrap(),
                         [_, ":", _] => continue,
-                        ["EOF"] => break,
                         [id, x, y] => points.push(Point::new(
                             id.parse::<u16>().unwrap(),
                             x.parse::<f32>().unwrap() as u32,
