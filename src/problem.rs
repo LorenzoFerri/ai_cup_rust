@@ -3,11 +3,11 @@ use std::fs::read_to_string;
 
 #[derive(Debug)]
 pub struct Problem {
-    name: String,
-    comment: String,
-    dimension: u32,
-    best_known: u32,
-    points: Vec<Point>,
+    pub name: String,
+    pub comment: String,
+    pub dimension: u32,
+    pub best_known: u32,
+    pub points: Vec<Point>,
 }
 
 impl Problem {
@@ -40,7 +40,7 @@ impl Problem {
                         _ => continue,
                     }
                 }
-                Ok(Problem {
+                Ok(Self {
                     name: name.unwrap_or(String::from("No name")),
                     comment: comment.unwrap_or(String::from("No comment")),
                     dimension,
@@ -50,5 +50,11 @@ impl Problem {
             }
             Err(_) => Err("Error reading the file"),
         }
+    }
+
+    /// Get a specific point shifting by 1
+    /// (since on the problem file are stored starting from 1)
+    pub fn get_point(&self, id: usize) -> &Point {
+        return &self.points[id - 1];
     }
 }
