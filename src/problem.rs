@@ -5,7 +5,7 @@ use std::fs::read_to_string;
 pub struct Problem {
     pub name: String,
     pub comment: String,
-    pub dimension: u32,
+    pub dimension: usize,
     pub best_known: u32,
     pub points: Vec<Point>,
 }
@@ -19,7 +19,7 @@ impl Problem {
 
                 let mut name: Option<String> = None;
                 let mut comment: Option<String> = None;
-                let mut dimension: u32 = 0;
+                let mut dimension: usize = 0;
                 let mut best_known: u32 = 0;
                 let mut points: Vec<Point> = Vec::new();
 
@@ -28,7 +28,7 @@ impl Problem {
                     match words.as_slice() {
                         ["NAME", ":", x] => name = x.parse().ok(),
                         ["COMMENT", ":", x] => comment = x.parse().ok(),
-                        ["DIMENSION", ":", x] => dimension = x.parse::<u32>().unwrap(),
+                        ["DIMENSION", ":", x] => dimension = x.parse::<usize>().unwrap(),
                         ["BEST_KNOWN", ":", x] => best_known = x.parse::<u32>().unwrap(),
                         [_, ":", _] => continue,
                         [id, x, y] => points.push(Point::new(
