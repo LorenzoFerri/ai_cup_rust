@@ -1,4 +1,6 @@
 extern crate nalgebra;
+extern crate rand;
+
 mod distance_matrix;
 mod point;
 mod problem;
@@ -17,10 +19,15 @@ fn main() {
     let problem = Problem::from_file(filename);
     match problem {
         Ok(problem) => {
-            let distance_matrix = DMatrix::<u32>::from_problem(&problem);
-            let solution = Solution::new(&problem);
+            let distance_matrix = DMatrix::<i32>::from_problem(&problem);
+            let mut solution = Solution::new(&problem, &distance_matrix);
             println!("{}", solution.compute_cost());
-            println!("{:?}", distance_matrix.diagonal());
+            solution.two_opt();
+            println!("{}", solution.compute_cost());
+            solution.shuffle();
+            println!("{}", solution.compute_cost());
+            solution.two_opt();
+            println!("{}", solution.compute_cost());
         }
         Err(error) => {
             println!("{}", error);
