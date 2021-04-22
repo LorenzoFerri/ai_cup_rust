@@ -20,7 +20,7 @@ fn main() {
     let problem = Problem::from_file(filename);
     match problem {
         Ok(problem) => {
-            let distance_matrix = DMatrix::<i32>::from_problem(&problem);
+            let distance_matrix = DistanceMatrix::from_problem(&problem);
             let mut solution = Solution::new(&problem, &distance_matrix);
             println!("{}", solution.compute_cost());
             solution.two_opt();
