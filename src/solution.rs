@@ -9,7 +9,7 @@ pub struct Solution<'a> {
     pub path: Vec<usize>,
     pub problem: &'a Problem,
     pub distance_matrix: &'a DMatrix<i32>,
-    rng: StdRng,
+    pub rng: StdRng,
 }
 
 impl<'a> Solution<'a> {

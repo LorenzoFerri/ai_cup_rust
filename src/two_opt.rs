@@ -40,4 +40,14 @@ impl<'a> Solution<'a> {
             }
         }
     }
+
+    pub fn swap(&mut self, i: usize, j: usize) {
+        let mut i = i;
+        let mut j = j;
+        while i < j {
+            self.path.swap(i, j);
+            i += 1;
+            j -= 1;
+        }
+    }
 }
