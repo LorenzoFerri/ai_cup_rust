@@ -1,9 +1,11 @@
+extern crate nalgebra;
 mod distance_matrix;
 mod point;
 mod problem;
 mod solution;
 
 use distance_matrix::DistanceMatrix;
+use nalgebra::DMatrix;
 use problem::Problem;
 use solution::Solution;
 use std::env;
@@ -15,10 +17,10 @@ fn main() {
     let problem = Problem::from_file(filename);
     match problem {
         Ok(problem) => {
-            let distance_matrix = DistanceMatrix::from_problem(&problem);
+            let distance_matrix = DMatrix::<u32>::from_problem(&problem);
             let solution = Solution::new(&problem);
             println!("{}", solution.compute_cost());
-            println!("{:?}", distance_matrix.matrix);
+            println!("{:?}", distance_matrix.diagonal());
         }
         Err(error) => {
             println!("{}", error);
