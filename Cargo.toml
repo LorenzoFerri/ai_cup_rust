@@ -9,3 +9,5 @@ edition = "2018"
 [dependencies]
 nalgebra = "0.26.1"
 rand = "0.8.3"
+rand_pcg = "0.3.0"
+rand_seeder = "0.2.2"

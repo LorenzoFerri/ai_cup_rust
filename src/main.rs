@@ -5,6 +5,7 @@ mod distance_matrix;
 mod point;
 mod problem;
 mod solution;
+mod two_opt;
 
 use distance_matrix::DistanceMatrix;
 use nalgebra::DMatrix;
