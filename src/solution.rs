@@ -1,22 +1,27 @@
 use crate::problem::Problem;
 use crate::DMatrix;
+
+use rand::prelude::*;
 use rand::seq::SliceRandom;
-use rand::thread_rng;
 
 #[derive(Debug, Clone)]
 pub struct Solution<'a> {
     pub path: Vec<usize>,
     pub problem: &'a Problem,
     pub distance_matrix: &'a DMatrix<i32>,
+    rng: StdRng,
 }
 
 impl<'a> Solution<'a> {
-    pub fn new(problem: &'a Problem, distance_matrix: &'a DMatrix<i32>) -> Self {
+    pub fn new(problem: &'a Problem, distance_matrix: &'a DMatrix<i32>, seed: u64) -> Self {
         let size = problem.dimension as usize;
+        let rng = StdRng::seed_from_u64(seed);
+
         Self {
             path: (1..size + 1).collect(),
             problem,
             distance_matrix,
+            rng,
         }
     }
 
@@ -34,6 +39,6 @@ impl<'a> Solution<'a> {
     }
 
     pub fn shuffle(&mut self) {
-        self.path.shuffle(&mut thread_rng());
+        self.path.shuffle(&mut self.rng);
     }
 }

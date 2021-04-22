@@ -9,7 +9,7 @@
             "type": "cppvsdbg",
             "request": "launch",
             "program": "${workspaceRoot}/target/debug/ai_cup.exe",
-            "args": ["./problems/ch130.tsp"],
+            "args": ["./problems/ch130.tsp", "0"],
             "stopAtEntry": false,
             "cwd": "${workspaceFolder}",
             "environment": [],
