@@ -24,9 +24,6 @@ fn main() {
         Ok(problem) => {
             let distance_matrix = DistanceMatrix::from_problem(&problem);
             let mut solution = Solution::new(&problem, &distance_matrix, seed);
-            println!("Initial Cost: {}", solution.compute_cost());
-            solution.two_opt();
-            println!("Two Opt: {}", solution.compute_cost());
             solution.shuffle();
             println!("Shuffle: {}", solution.compute_cost());
             solution.two_opt();

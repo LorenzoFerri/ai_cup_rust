@@ -1,12 +1,14 @@
 use crate::Solution;
 
 impl<'a> Solution<'a> {
-    pub fn two_opt(&mut self) {
+    pub fn two_opt(&mut self) -> i32 {
         let mut improve = true;
         let mut best_gain: i32;
+        let mut total_gain = 0;
         let mut first = 0;
         let mut second = 0;
         let len = self.path.len();
+
         while improve {
             improve = false;
             for i in 0..len {
@@ -35,10 +37,13 @@ impl<'a> Solution<'a> {
                     }
                 }
                 if best_gain < 0 {
+                    total_gain += best_gain;
                     self.path.swap(first, second);
                 }
             }
         }
+
+        return total_gain;
     }
 
     pub fn swap(&mut self, i: usize, j: usize) {
